@@ -62,7 +62,9 @@ export default function App() {
         <NumResults movies={movies} />
       </Navbar>
       <Main>
-        <ListBox movies={movies} />
+        <ListBox>
+          <MovieList movies={movies} />
+        </ListBox>
         <WachedBox />
       </Main>
     </>
@@ -108,7 +110,7 @@ function Main({ children }) {
   return <main className="main">{children}</main>;
 }
 
-function ListBox({ movies }) {
+function ListBox({ children }) {
   const [isOpen1, setIsOpen1] = useState(true);
 
   return (
@@ -118,7 +120,7 @@ function ListBox({ movies }) {
         onClick={() => setIsOpen1((open) => !open)}>
         {isOpen1 ? "–" : "+"}
       </button>
-      {isOpen1 && <MovieList movies={movies} />}
+      {isOpen1 && children}
     </div>
   );
 }
