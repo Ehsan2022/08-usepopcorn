@@ -58,16 +58,23 @@ export default function App() {
   return (
     <>
       <Navbar>
-        <Logo />
         <Search />
         <NumResults movies={movies} />
       </Navbar>
-      <Main movies={movies} />
+      <Main>
+        <ListBox movies={movies} />
+        <WachedBox />
+      </Main>
     </>
   );
 }
 function Navbar({ children }) {
-  return <nav className="nav-bar">{children}</nav>;
+  return (
+    <nav className="nav-bar">
+      <Logo />
+      {children}
+    </nav>
+  );
 }
 function Logo() {
   return (
@@ -97,13 +104,8 @@ function NumResults({ movies }) {
     </p>
   );
 }
-function Main({ movies }) {
-  return (
-    <main className="main">
-      <ListBox movies={movies} />
-      <WachedBox />
-    </main>
-  );
+function Main({ children }) {
+  return <main className="main">{children}</main>;
 }
 
 function ListBox({ movies }) {
